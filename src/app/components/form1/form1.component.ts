@@ -1,11 +1,19 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 export class PersonelModel{
-  tcNo: number;
-  personelAdi: string;
-  bolumu: string;
-  maasi: number;
-  iseGirisTarihi: Date;
+  id: number = 0;
+  tcNo: number = 0;
+  personelAdi: string = "";
+  bolumu: string = "Muhasebe";
+  maasi: number = 0;
+  iseGirisTarihi: string;
+
+  // constructor(tc: number, personelAdi: string, bolumu: string){
+  //   this.tcNo = tc;
+  //   this.personelAdi = personelAdi;
+  //   this.bolumu = bolumu;
+  // }
 }
 
 @Component({
@@ -22,9 +30,24 @@ export class Form1Component implements OnInit {
     "Bilgi İşlem",
     "Torpilli"
   ]
-  constructor() { }
+
+  model: PersonelModel = new PersonelModel();
+
+  personels: PersonelModel[] = [];
+
+
+  constructor(
+    private _date: DatePipe
+  ) { 
+    this.model.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd')
+  }
 
   ngOnInit(): void {
+  }
+
+  kaydet(){
+   this.personels.push(this.model);    
+   this.model = new PersonelModel();  
   }
 
 }
