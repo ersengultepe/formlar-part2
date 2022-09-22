@@ -18,10 +18,10 @@
                     <td [innerText]="personel.tcNo"></td>
                     <td [innerText]="personel.personelAdi"></td>
                     <td [innerText]="personel.bolumu"></td>
-                    <td [innerText]="personel.maasi | currency: 'TRY':'symbol-narrow':'1.2-0'"></td>
+                    <td [innerText]="personel.maasi | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
                     <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
                     <td>
-                        <button class="btn btn-sm btn-outline-warning">
+                        <button class="btn btn-sm btn-outline-warning" (click)="getir(i)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button class="btn btn-sm btn-outline-danger mx-2" (click)="delete(i)">
@@ -89,8 +89,12 @@
         </div>
         <div class="form-group mt-2">
             <button class="btn btn-warning w-100" (click)="guncelle()">
-                <i class="fa-solid fa-floppy-disk"></i>
-                Kaydet
+                <i class="fa-solid fa-pen-to-square"></i>
+                Güncelle
+            </button>
+            <button class="btn btn-danger w-100 mt-2" (click)="vazgec()">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+                Vazgeç
             </button>
         </div>
     </div>

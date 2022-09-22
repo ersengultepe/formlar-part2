@@ -40,7 +40,11 @@ export class Form1Component implements OnInit {
 
   model: PersonelModel = new PersonelModel(this._date);
 
+  isUpdateFormActive: boolean = false;
+  index: number = 0;
+
   personels: PersonelModel[] = [];
+  updateModel: PersonelModel = new PersonelModel(this._date);
 
 
   constructor(
@@ -60,4 +64,19 @@ export class Form1Component implements OnInit {
     this.personels.splice(index,1);
   }
 
+  getir(index: number){
+    this.updateModel = this.personels[index]
+    this.isUpdateFormActive = true;
+    this.index = index;
+  }
+
+  guncelle(){
+    this.personels[this.index] = this.updateModel;
+    this.isUpdateFormActive = false;
+    this.updateModel = new PersonelModel(this._date);
+  }
+
+  vazgec(){
+    this.isUpdateFormActive = false;
+  }
 }
