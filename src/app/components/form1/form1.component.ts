@@ -54,7 +54,10 @@ export class Form1Component implements OnInit {
    this.model.maasi = +this.model.maasi.toString().replace(",",".")
    this.personels.push(this.model);    
    this.model = new PersonelModel(this._date); 
+  }
 
+  delete(index: number){
+    this.personels.splice(index,1);
   }
 
 }

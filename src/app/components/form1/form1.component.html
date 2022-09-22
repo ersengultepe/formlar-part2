@@ -9,6 +9,7 @@
                     <th>Bölümü</th>
                     <th>Maaşı</th>
                     <th>İşe Giriş Tarihi</th>
+                    <th>İşlemler</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,13 +18,21 @@
                     <td [innerText]="personel.tcNo"></td>
                     <td [innerText]="personel.personelAdi"></td>
                     <td [innerText]="personel.bolumu"></td>
-                    <td [innerText]="personel.maasi"></td>
+                    <td [innerText]="personel.maasi | currency: 'TRY':'symbol-narrow':'1.2-0'"></td>
                     <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger mx-2" (click)="delete(i)">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" *ngIf="!isUpdateFormActive">
         <h4 class="alert alert-primary">Kayıt Formu</h4>
         <div class="form-group">
             T.C. Numarası
@@ -49,6 +58,37 @@
         </div>
         <div class="form-group mt-2">
             <button class="btn btn-primary w-100" (click)="kaydet()">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Kaydet
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4" *ngIf="isUpdateFormActive">
+        <h4 class="alert alert-warning">Güncelleme Formu</h4>
+        <div class="form-group">
+            T.C. Numarası
+            <input [(ngModel)]="updateModel.tcNo" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            Personel Adı
+            <input [(ngModel)]="updateModel.personelAdi" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            Bölümü
+            <select [(ngModel)]="updateModel.bolumu" class="form-control">
+                <option [value]="bolum" *ngFor="let bolum of bolumler" [innerText]="bolum"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            Maaşı
+            <input [(ngModel)]="updateModel.maasi" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            İşe Giriş Tarihi
+            <input [(ngModel)]="updateModel.iseGirisTarihi" type="date" class="form-control">
+        </div>
+        <div class="form-group mt-2">
+            <button class="btn btn-warning w-100" (click)="guncelle()">
                 <i class="fa-solid fa-floppy-disk"></i>
                 Kaydet
             </button>
