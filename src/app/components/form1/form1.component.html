@@ -18,7 +18,7 @@
                     <td [innerText]="personel.personelAdi"></td>
                     <td [innerText]="personel.bolumu"></td>
                     <td [innerText]="personel.maasi"></td>
-                    <td [innerText]="personel.iseGirisTarihi"></td>
+                    <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
                 </tr>
             </tbody>
         </table>

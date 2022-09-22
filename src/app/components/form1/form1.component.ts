@@ -9,6 +9,13 @@ export class PersonelModel{
   maasi: number = 0;
   iseGirisTarihi: string;
 
+  constructor(
+    private _date: DatePipe
+  ){
+    this.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd');
+  }
+
+
   // constructor(tc: number, personelAdi: string, bolumu: string){
   //   this.tcNo = tc;
   //   this.personelAdi = personelAdi;
@@ -31,23 +38,23 @@ export class Form1Component implements OnInit {
     "Torpilli"
   ]
 
-  model: PersonelModel = new PersonelModel();
+  model: PersonelModel = new PersonelModel(this._date);
 
   personels: PersonelModel[] = [];
 
 
   constructor(
     private _date: DatePipe
-  ) { 
-    this.model.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd')
-  }
+  ) { }
 
   ngOnInit(): void {
   }
 
   kaydet(){
+   this.model.maasi = +this.model.maasi.toString().replace(",",".")
    this.personels.push(this.model);    
-   this.model = new PersonelModel();  
+   this.model = new PersonelModel(this._date); 
+
   }
 
 }
