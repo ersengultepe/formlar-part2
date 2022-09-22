@@ -44,7 +44,7 @@
         </div>
         <div class="form-group">
             Bölümü
-            <select [(ngModel)]="model.bolumu" class="form-control">
+            <select (change)="isSelectedItem($event)" class="form-control">
                 <option [value]="bolum" *ngFor="let bolum of bolumler" [innerText]="bolum"></option>
             </select>
         </div>

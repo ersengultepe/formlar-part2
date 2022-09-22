@@ -43,6 +43,8 @@ export class Form1Component implements OnInit {
   isUpdateFormActive: boolean = false;
   index: number = 0;
 
+  selectedItem: string = "";
+
   personels: PersonelModel[] = [];
   updateModel: PersonelModel = new PersonelModel(this._date);
 
@@ -78,5 +80,10 @@ export class Form1Component implements OnInit {
 
   vazgec(){
     this.isUpdateFormActive = false;
+  }
+
+  isSelectedItem(event: any){
+    console.log(event);
+    
   }
 }
