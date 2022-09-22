@@ -43,7 +43,7 @@ export class Form1Component implements OnInit {
   isUpdateFormActive: boolean = false;
   index: number = 0;
 
-  selectedItem: string = "";
+  selectedItem: string = "Muhasebe";
 
   personels: PersonelModel[] = [];
   updateModel: PersonelModel = new PersonelModel(this._date);
@@ -53,11 +53,15 @@ export class Form1Component implements OnInit {
     private _date: DatePipe
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
   }
 
   kaydet(){
    this.model.maasi = +this.model.maasi.toString().replace(",",".")
+   this.model.bolumu = this.selectedItem;
+
+    
+   
    this.personels.push(this.model);    
    this.model = new PersonelModel(this._date); 
   }
@@ -83,7 +87,7 @@ export class Form1Component implements OnInit {
   }
 
   isSelectedItem(event: any){
-    console.log(event);
+    this.selectedItem = event.target.value
     
   }
 }
