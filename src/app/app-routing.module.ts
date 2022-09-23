@@ -16,6 +16,10 @@ const routes: Routes = [
         component: Form1Component
       },
       {
+        path: "form1",
+        component: Form1Component
+      },
+      {
         path: "form2",
         component: Form2Component
       }
