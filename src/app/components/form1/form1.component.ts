@@ -1,27 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-export class PersonelModel{
-  id: number = 0;
-  tcNo: number = 0;
-  personelAdi: string = "";
-  bolumu: string = "Muhasebe";
-  maasi: number = 0;
-  iseGirisTarihi: string;
+import { SwalService } from 'src/app/services/swal.service';
+import { PersonelModel } from './models/form1.model';
 
-  constructor(
-    private _date: DatePipe
-  ){
-    this.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd');
-  }
-
-
-  // constructor(tc: number, personelAdi: string, bolumu: string){
-  //   this.tcNo = tc;
-  //   this.personelAdi = personelAdi;
-  //   this.bolumu = bolumu;
-  // }
-}
 
 @Component({
   selector: 'app-form1',
@@ -50,44 +32,59 @@ export class Form1Component implements OnInit {
 
 
   constructor(
-    private _date: DatePipe
+    private _date: DatePipe,
+    private _swal: SwalService
   ) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
   }
 
-  kaydet(){
-   this.model.maasi = +this.model.maasi.toString().replace(",",".")
-   this.model.bolumu = this.selectedItem;
+  kaydet() {
+    if (this.model.maasi < 5500) {
+      this._swal.callSwal("Personel maaşı asgari ücretten az olamaz", "Error!", "error")
+      return;
+    }
 
-    
-   
-   this.personels.push(this.model);    
-   this.model = new PersonelModel(this._date); 
+    if (this.model.personelAdi.length<4) {
+      this._swal.callSwal("Personel adı en az 3 karakter olmalıdır", "Error!", "error")
+      return;
+    }
+
+    this.model.maasi = +this.model.maasi.toString().replace(",", ".")
+    this.model.bolumu = this.selectedItem;
+
+    this.personels.push(this.model);
+    this.model = new PersonelModel(this._date);
+
+    this._swal.callSwal("Kayıt işlemi başarılı", "Başarılı", "success")
   }
 
-  delete(index: number){
-    this.personels.splice(index,1);
+  delete(index: number) {
+    this.personels.splice(index, 1);
+
+    this._swal.callSwal("Silme işlemi başarılı", "Başarılı", "info")
   }
 
-  getir(index: number){
+  getir(index: number) {
     this.updateModel = this.personels[index]
     this.isUpdateFormActive = true;
     this.index = index;
   }
 
-  guncelle(){
+  guncelle() {
     this.personels[this.index] = this.updateModel;
     this.isUpdateFormActive = false;
     this.updateModel = new PersonelModel(this._date);
+
+    this._swal.callSwal("Güncelleme işlemi başarılı", "Başarılı", "warning")
   }
 
-  vazgec(){
+  vazgec() {
     this.isUpdateFormActive = false;
   }
 
-  isSelectedItem(event: any){
+  isSelectedItem(event: any) {
     this.selectedItem = event.target.value
-    
+
   }
 }
