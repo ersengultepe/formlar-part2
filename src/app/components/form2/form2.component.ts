@@ -24,6 +24,7 @@ export class Form2Component implements OnInit {
     "Bilgi İşlem",
     "Torpilli"
   ]
+  index: number = 0;
 
   kayitForm: FormGroup;
   updateForm: FormGroup;
@@ -62,6 +63,7 @@ export class Form2Component implements OnInit {
   getir(index: number){
     this.isUpdateFormActive = true;
     this.updateModel = this.personels[index]
+    this.index = index
     this.createUpdateForm();
   }
 
@@ -87,11 +89,18 @@ export class Form2Component implements OnInit {
   }
 
   guncelle(){
-
+    if (!this.updateForm.valid) {
+      this._swal.callSwal("Zorunlu alanları doldurun!","Validasyon Hatası!","error")
+      return;
+    }
+    
+    this.personels[this.index] = this.updateForm.value
+    this.vazgec();
   }
 
   vazgec(){
-
+    this.isUpdateFormActive = false;
+    this.updateForm.reset();
   }
 
   checkInputForValid(name: string){

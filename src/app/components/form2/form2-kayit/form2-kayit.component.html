@@ -1,0 +1,43 @@
+<h4 class="alert alert-primary">Kayıt Formu</h4>
+        <form [formGroup]="kayitForm" (ngSubmit)="kaydet()">
+            <div class="form-group">
+                T.C. Numarası
+                <input type="text" title="TC Numarası" formControlName="tcNo" [class]="checkInputForValid('tcNo')">
+                <div class="invalid-feedback">
+                    Geçerli bir TC numarası yazın!
+                </div>
+            </div>
+            <div class="form-group">
+                Personel Adı
+                <input type="text" formControlName="personelAdi" [class]="checkInputForValid('personelAdi')">
+                <div class="invalid-feedback">
+                    Personel adı en az 3 karakter olmalıdır!
+                </div>
+            </div>
+            <div class="form-group">
+                Bölümü
+                <select formControlName="bolumu" (change)="isSelectedItem($event)" [class]="checkInputForValid('bolumu')">
+                    <option [value]="bolum" *ngFor="let bolum of bolumler" [innerText]="bolum"></option>
+                </select>               
+            </div>
+            <div class="form-group">
+                Maaşı
+                <input formControlName="maasi" type="text" [class]="checkInputForValid('maasi')">
+                <div class="invalid-feedback">
+                    Personel maaşı asgari ücretten az olamaz!
+                </div>
+            </div>
+            <div class="form-group">
+                İşe Giriş Tarihi
+                <input type="date" formControlName="iseGirisTarihi" [class]="checkInputForValid('iseGirisTarihi')">
+                <div class="invalid-feedback">
+                    İşe giriş tarihini yazmalısınız!
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <button class="btn btn-primary w-100" [disabled]="!kayitForm.valid">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Kaydet
+                </button>
+            </div>
+        </form>
