@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PersonelModel } from '../../form1/models/form1.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { PersonelModel } from '../../form1/models/form1.model';
 export class Form2ListeleComponent implements OnInit {
 
   filterText: string = "";
-  personels: PersonelModel[] = [];
+  @Input() personels: PersonelModel[] = [];
   
   constructor() { }
 

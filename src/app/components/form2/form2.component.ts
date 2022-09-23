@@ -11,7 +11,7 @@ import { PersonelModel } from '../form1/models/form1.model';
 })
 export class Form2Component implements OnInit {
 
-  
+  personels: PersonelModel[] = [];
   isUpdateFormActive: boolean = false;
   model: PersonelModel = new PersonelModel();
   
@@ -40,16 +40,10 @@ export class Form2Component implements OnInit {
   }
 
 
-  kaydet(){
-    // //console.log(this.kayitForm.value);   
-    // if (!this.kayitForm.valid) {
-    //   this._swal.callSwal("Zorunlu alanları doldurun!","Validasyon Hatası!","error")
-    //   return;
-    // } 
-
-    // this.personels.push(this.kayitForm.value);
-    // this._swal.callSwal("Personel kayıt işlemi başarıyla tamamlandı","Başarılı","success")
-    // this.createKayitForm();
+  kaydet(event: any){
+    this.personels.push(event);
+    this._swal.callSwal("Personel kayıt işlemi başarıyla tamamlandı","Başarılı","success")
+    //this.createKayitForm();
   }
 
   guncelle(){

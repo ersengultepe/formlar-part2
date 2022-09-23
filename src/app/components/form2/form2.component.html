@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-8">
-       <app-form2-listele></app-form2-listele>
+       <app-form2-listele [personels]="personels"></app-form2-listele>
     </div>
     <div class="col-md-4" *ngIf="!isUpdateFormActive">
-        <app-form2-kayit></app-form2-kayit>
+        <app-form2-kayit #input (kayitEvent)="kaydet($event)"></app-form2-kayit>
     </div>
     <div class="col-md-4" *ngIf="isUpdateFormActive">
        <app-form2-guncelle></app-form2-guncelle>        

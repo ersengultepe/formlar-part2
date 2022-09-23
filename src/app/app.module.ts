@@ -37,7 +37,7 @@ import { Form2ListeleComponent } from './components/form2/form2-listele/form2-li
     AppRoutingModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })
