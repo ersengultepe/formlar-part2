@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonelModel } from '../form1/models/form1.model';
 
 @Component({
@@ -22,9 +24,24 @@ export class Form2Component implements OnInit {
     "Torpilli"
   ]
 
-  constructor() { }
+  kayitForm: FormGroup;
+
+  constructor(
+    private _date: DatePipe
+  ) { }
 
   ngOnInit(): void {
+    this.createKayitForm();
+  }
+
+  createKayitForm(){
+    this.kayitForm = new FormGroup({
+      personelAdi: new FormControl("",[Validators.required, Validators.minLength(3)]),
+      bolumu: new FormControl("Muhasebe", Validators.required),
+      maasi: new FormControl(5500, [Validators.required, Validators.min(5500)]),
+      iseGirisTarihi: new FormControl(this._date.transform(new Date(), 'yyyy-MM-dd'), Validators.required),
+      tcNo: new FormControl("",[Validators.required, Validators.minLength(11),Validators.maxLength(11), Validators.pattern("[a-zA-Z0-9[B]_-.[/B]]")])
+    })
   }
 
   getir(index: number){
@@ -48,6 +65,6 @@ export class Form2Component implements OnInit {
   }
 
   vazgec(){
-    
+
   }
 }
