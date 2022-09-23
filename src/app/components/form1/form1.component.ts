@@ -12,6 +12,8 @@ import { PersonelModel } from './models/form1.model';
 })
 export class Form1Component implements OnInit {
 
+  filterText: string = "";
+
   bolumler: string[] = [
     "Muhasebe",
     "Emeklilik İşlemleri",
@@ -20,15 +22,48 @@ export class Form1Component implements OnInit {
     "Torpilli"
   ]
 
-  model: PersonelModel = new PersonelModel(this._date);
+  model: PersonelModel = new PersonelModel();
 
   isUpdateFormActive: boolean = false;
   index: number = 0;
 
   selectedItem: string = "Muhasebe";
 
-  personels: PersonelModel[] = [];
-  updateModel: PersonelModel = new PersonelModel(this._date);
+  personels: PersonelModel[] = [
+    {
+      "id": 0,
+      "personelAdi": "Taner Saydam",
+      "maasi": 5500,
+      "bolumu": "Muhasebe",
+      "tcNo": 53331231,
+      "iseGirisTarihi": "09.22.2022"
+    },
+    {
+      "id": 1,
+      "personelAdi": "Tugay Saydam",
+      "maasi": 1500,
+      "bolumu": "Yazılım",
+      "tcNo": 53331231231,
+      "iseGirisTarihi": "09.25.2022"
+    },
+    {
+      "id": 2,
+      "personelAdi": "Seval Saydam",
+      "maasi": 5100,
+      "bolumu": "Bilgi İşlem",
+      "tcNo": 53331231,
+      "iseGirisTarihi": "02.09.2022"
+    },
+    {
+      "id": 3,
+      "personelAdi": "Tahir Saydam",
+      "maasi": 8500,
+      "bolumu": "Torpilli",
+      "tcNo": 53331231,
+      "iseGirisTarihi": "01.08.2022"
+    }
+  ];
+  updateModel: PersonelModel = new PersonelModel();
 
 
   constructor(
@@ -54,7 +89,7 @@ export class Form1Component implements OnInit {
     this.model.bolumu = this.selectedItem;
 
     this.personels.push(this.model);
-    this.model = new PersonelModel(this._date);
+    this.model = new PersonelModel();
 
     this._swal.callSwal("Kayıt işlemi başarılı", "Başarılı", "success")
   }
@@ -74,7 +109,7 @@ export class Form1Component implements OnInit {
   guncelle() {
     this.personels[this.index] = this.updateModel;
     this.isUpdateFormActive = false;
-    this.updateModel = new PersonelModel(this._date);
+    this.updateModel = new PersonelModel();
 
     this._swal.callSwal("Güncelleme işlemi başarılı", "Başarılı", "warning")
   }

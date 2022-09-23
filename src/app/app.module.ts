@@ -10,6 +10,8 @@ import { Form1Component } from './components/form1/form1.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/layouts/navbar/navbar.component';
+import { Form1Pipe } from './components/form1/pipes/form1.pipe';
+import { Form2Component } from './components/form2/form2.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavbarComponent } from './components/layouts/navbar/navbar.component';
     Form1Component,
     LoginComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    Form1Pipe,
+    Form2Component
   ],
   imports: [
     BrowserModule,

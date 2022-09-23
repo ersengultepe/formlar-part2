@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group col-md-4 float-end mt-2">
+            <input type="search" [(ngModel)]="filterText" class="form-control" placeholder="Aranacak kelimeyi yazın">
+        </div>
+        <div class="form-group mt-4">
+            <br>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>T.C. No</th>
+                        <th>Personel Adı</th>
+                        <th>Bölümü</th>
+                        <th>Maaşı</th>
+                        <th>İşe Giriş Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personel of personels | form1Pipe:filterText let i = index">
+                        <td [innerText]="i + 1"></td>
+                        <td [innerText]="personel.tcNo"></td>
+                        <td [innerText]="personel.personelAdi"></td>
+                        <td [innerText]="personel.bolumu"></td>
+                        <td [innerText]="personel.maasi | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
+                        <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-warning" (click)="getir(i)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger mx-2" (click)="delete(i)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-md-4" *ngIf="!isUpdateFormActive">
+        <h4 class="alert alert-primary">Kayıt Formu</h4>
+        <form>
+            <div class="form-group">
+                T.C. Numarası
+                <input type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                Personel Adı
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                Bölümü
+                <select (change)="isSelectedItem($event)" class="form-control">
+                    <option [value]="bolum" *ngFor="let bolum of bolumler" [innerText]="bolum"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                Maaşı
+                <input required min="5500" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                İşe Giriş Tarihi
+                <input type="date" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+                <button class="btn btn-primary w-100" (click)="kaydet()">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4" *ngIf="isUpdateFormActive">
+        <h4 class="alert alert-warning">Güncelleme Formu</h4>
+        <div class="form-group">
+            T.C. Numarası
+            <input type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            Personel Adı
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            Bölümü
+            <select class="form-control">
+                <option [value]="bolum" *ngFor="let bolum of bolumler" [innerText]="bolum"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            Maaşı
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            İşe Giriş Tarihi
+            <input type="date" class="form-control">
+        </div>
+        <div class="form-group mt-2">
+            <button class="btn btn-warning w-100" (click)="guncelle()">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Güncelle
+            </button>
+            <button class="btn btn-danger w-100 mt-2" (click)="vazgec()">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+                Vazgeç
+            </button>
+        </div>
+    </div>
+</div>

@@ -8,10 +8,10 @@ export class PersonelModel{
     maasi: number = 0;
     iseGirisTarihi: string;
   
-    constructor(
-      private _date: DatePipe
-    ){
-      this.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd');
-    }
-    
+    // constructor(
+    //   private _date: DatePipe
+    // ){
+    //   this.iseGirisTarihi = _date.transform(new Date(), 'yyyy-MM-dd');
+    // }
+
   }
