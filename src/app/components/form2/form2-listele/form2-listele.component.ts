@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonelModel } from '../../form1/models/form1.model';
 
 @Component({
   selector: 'app-form2-listele',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Form2ListeleComponent implements OnInit {
 
+  filterText: string = "";
+  personels: PersonelModel[] = [];
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getir(index: number){
+
+  }
+
+  delete(index: number){
+
   }
 
 }
