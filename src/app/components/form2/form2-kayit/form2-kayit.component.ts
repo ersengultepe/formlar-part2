@@ -19,8 +19,6 @@ export class Form2KayitComponent implements OnInit {
     "Torpilli"
   ]
 
-  @Output() kayitEvent = new EventEmitter<any>()
-
   constructor(
     private _date: DatePipe,
     private _swal: SwalService
@@ -58,9 +56,6 @@ export class Form2KayitComponent implements OnInit {
       this._swal.callSwal("Zorunlu alanları doldurun!", "Validasyon Hatası!", "error")
       return;
     }
-
-    this.kayitEvent.emit(this.kayitForm.value);
-
   }
 
 }
