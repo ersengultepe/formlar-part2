@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SwalService } from 'src/app/services/swal.service';
 
@@ -8,9 +8,11 @@ import { SwalService } from 'src/app/services/swal.service';
   templateUrl: './form2-kayit.component.html',
   styleUrls: ['./form2-kayit.component.css']
 })
-export class Form2KayitComponent implements OnInit {
+export class Form2KayitComponent implements OnInit, AfterContentChecked {
 
   @Output() kayitEvent = new EventEmitter<any>();
+@Input() isSuccess = false;
+@Output() kayitSonrasiEvent = new EventEmitter<any>();
 
   kayitForm: FormGroup;
   bolumler: string[] = [
@@ -25,6 +27,12 @@ export class Form2KayitComponent implements OnInit {
     private _date: DatePipe,
     private _swal: SwalService
   ) { }
+  ngAfterContentChecked(): void {
+    if (this.isSuccess) {
+      this.createKayitForm();
+      this.kayitSonrasiEvent.emit(true);
+    }
+  }
 
   ngOnInit(): void {
     this.createKayitForm();

@@ -2,7 +2,7 @@
         <form [formGroup]="kayitForm" (ngSubmit)="kaydet()">
             <div class="form-group">
                 T.C. Numarası
-                <input type="text" title="TC Numarası" formControlName="tcNo" [class]="checkInputForValid('tcNo')">
+                <input type="text" title="TC Numarası" maxlength="11" formControlName="tcNo" [class]="checkInputForValid('tcNo')">
                 <div class="invalid-feedback">
                     Geçerli bir TC numarası yazın!
                 </div>

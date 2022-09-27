@@ -14,7 +14,7 @@ export class Form2Component implements OnInit {
   personels: PersonelModel[] = [];
   isUpdateFormActive: boolean = false;
   model: PersonelModel = new PersonelModel();
-  
+  isSuccess = false;
   selectedItem: string = "";
   
   index: number = 0;
@@ -35,14 +35,15 @@ export class Form2Component implements OnInit {
   }
 
   delete(index: number){
-    // this.personels.splice(index,1);
-    // this._swal.callSwal("Personel kaydı başarıyla silindi","Başarılı","info");
+     this.personels.splice(index,1);
+     this._swal.callSwal("Personel kaydı başarıyla silindi","Başarılı","info");
   }
 
 
   kaydet(event: any){
     this.personels.push(event);
     this._swal.callSwal("Personel kayıt işlemi başarıyla tamamlandı","Başarılı","success")
+    this.isSuccess = true
     //this.createKayitForm();
   }
 
@@ -61,5 +62,10 @@ export class Form2Component implements OnInit {
     // this.updateForm.reset();
   }
 
+  isSuccessChange(event: any){
+    if (event) {
+      this.isSuccess = !this.isSuccess
+    }
+  }
   
 }
