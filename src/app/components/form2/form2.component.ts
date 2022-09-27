@@ -22,7 +22,7 @@ export class Form2Component implements OnInit {
   constructor(
     private _date: DatePipe,
     private _swal: SwalService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {}
  

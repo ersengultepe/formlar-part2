@@ -10,6 +10,8 @@ import { SwalService } from 'src/app/services/swal.service';
 })
 export class Form2KayitComponent implements OnInit {
 
+  @Output() kayitEvent = new EventEmitter<any>();
+
   kayitForm: FormGroup;
   bolumler: string[] = [
     "Muhasebe",
@@ -56,6 +58,9 @@ export class Form2KayitComponent implements OnInit {
       this._swal.callSwal("Zorunlu alanları doldurun!", "Validasyon Hatası!", "error")
       return;
     }
+
+    this.kayitEvent.emit(this.kayitForm.value);
+
   }
 
 }
