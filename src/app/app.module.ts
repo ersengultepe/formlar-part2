@@ -15,6 +15,7 @@ import { Form2Component } from './components/form2/form2.component';
 import { Form2KayitComponent } from './components/form2/form2-kayit/form2-kayit.component';
 import { Form2GuncelleComponent } from './components/form2/form2-guncelle/form2-guncelle.component';
 import { Form2ListeleComponent } from './components/form2/form2-listele/form2-listele.component';
+import { Form2Pipe } from './components/form2/pipes/form2.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Form2ListeleComponent } from './components/form2/form2-listele/form2-li
     Form2Component,
     Form2KayitComponent,
     Form2GuncelleComponent,
-    Form2ListeleComponent
+    Form2ListeleComponent,
+    Form2Pipe
   ],
   imports: [
     BrowserModule,
