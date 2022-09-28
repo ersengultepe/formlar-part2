@@ -22,7 +22,7 @@
                 <td [innerText]="personel.tcNo"></td>
                 <td [innerText]="personel.personelAdi"></td>
                 <td [innerText]="personel.bolumu"></td>
-                <td [innerText]="personel.maasi | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
+                <td [innerText]="personel.maasi | trCurrency"></td>
                 <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
                 <td>
                     <button class="btn btn-sm btn-outline-warning" (click)="getir(i)">

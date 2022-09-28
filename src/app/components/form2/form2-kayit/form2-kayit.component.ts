@@ -42,7 +42,7 @@ export class Form2KayitComponent implements OnInit, AfterContentChecked {
     this.kayitForm = new FormGroup({
       personelAdi: new FormControl("", [Validators.required, Validators.minLength(3)]),
       bolumu: new FormControl("Muhasebe", Validators.required),
-      maasi: new FormControl(5500, [Validators.required, Validators.min(5500)]),
+      maasi: new FormControl(5500),
       iseGirisTarihi: new FormControl(this._date.transform(new Date(), 'yyyy-MM-dd'), Validators.required),
       tcNo: new FormControl("", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^-?(0|[1-9]\d*)?$/)])
     })
