@@ -35,8 +35,12 @@ export class Form2Component implements OnInit {
   }
 
   delete(index: number){
-     this.personels.splice(index,1);
-     this._swal.callSwal("Personel kaydı başarıyla silindi","Başarılı","info");
+    this._swal.callSwalQuestion("Sil?","Silmek istiyor musunuz?","fa-solid fa-trash","Sil").then((res)=>{
+      if (res.isConfirmed) {
+        this.personels.splice(index,1);
+        this._swal.callSwal("Personel kaydı başarıyla silindi","Başarılı","info");    
+      }
+    })
   }
 
 
