@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Form1Component } from './components/form1/form1.component';
 import { Form2Component } from './components/form2/form2.component';
+import { Form2Guard } from './components/form2/guard/form2.guard';
 import { LayoutsComponent } from './components/layouts/layouts.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
       },
       {
         path: "form2",
-        component: Form2Component
+        component: Form2Component,
+        canDeactivate: [Form2Guard]
       }
     ]
   },

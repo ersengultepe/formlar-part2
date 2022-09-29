@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SwalService } from 'src/app/services/swal.service';
 import { PersonelModel } from '../form1/models/form1.model';
@@ -50,8 +50,15 @@ export class Form2Component implements OnInit {
     private _swal: SwalService
   ) {  }
 
+
   ngOnInit(): void {}
  
+  canDeactive(){
+    if (this.isUpdateFormActive) {
+      return confirm("Çıkmak istiyor musunuz?")
+    }
+    return true;    
+  }
 
   getir(index: number){
     this.isUpdateFormActive = true;
