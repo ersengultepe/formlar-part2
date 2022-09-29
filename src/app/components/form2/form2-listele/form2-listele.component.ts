@@ -9,8 +9,11 @@ import { PersonelModel } from '../../form1/models/form1.model';
 export class Form2ListeleComponent implements OnInit {
 
   filterText: string = "";
+  @Input() isUpdateFormActive: boolean = false;
   @Input() personels: PersonelModel[] = [];
   @Output() deleteEvent = new EventEmitter<any>();
+
+  @Output() getirEvent = new EventEmitter<any>();
   
   constructor() { }
 
@@ -18,7 +21,7 @@ export class Form2ListeleComponent implements OnInit {
   }
 
   getir(index: number){
-
+    this.getirEvent.emit(index);
   }
 
   delete(index: number){

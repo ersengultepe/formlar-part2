@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonelModel } from '../../form1/models/form1.model';
 
@@ -11,7 +11,10 @@ import { PersonelModel } from '../../form1/models/form1.model';
 export class Form2GuncelleComponent implements OnInit {
 
   updateForm: FormGroup;
-  updateModel: PersonelModel = new PersonelModel();
+  @Input() updateModel: PersonelModel = new PersonelModel();
+  @Output() cancelEvent = new EventEmitter<any>();
+  @Output() updateEvent = new EventEmitter<any>();
+
   bolumler: string[] = [
     "Muhasebe",
     "Emeklilik İşlemleri",
@@ -25,6 +28,7 @@ export class Form2GuncelleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.createUpdateForm();
   }
 
   createUpdateForm(){
@@ -39,11 +43,11 @@ export class Form2GuncelleComponent implements OnInit {
   }
 
   guncelle(){
-
+    this.updateEvent.emit(this.updateForm.value);
   }
 
   vazgec(){
-
+    this.cancelEvent.emit(true);
   }
 
   checkInputForValid(name: string){

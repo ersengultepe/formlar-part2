@@ -25,10 +25,10 @@
                 <td [innerText]="personel.maasi | trCurrency"></td>
                 <td [innerText]="personel.iseGirisTarihi | date: 'dd.MM.yyyy'"></td>
                 <td>
-                    <button class="btn btn-sm btn-outline-warning" (click)="getir(i)">
+                    <button class="btn btn-sm btn-outline-warning" *ngIf="!isUpdateFormActive" (click)="getir(i)">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-danger mx-2" (click)="delete(i)">
+                    <button class="btn btn-sm btn-outline-danger mx-2" *ngIf="!isUpdateFormActive" (click)="delete(i)">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>

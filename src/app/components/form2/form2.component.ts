@@ -11,7 +11,33 @@ import { PersonelModel } from '../form1/models/form1.model';
 })
 export class Form2Component implements OnInit {
 
-  personels: PersonelModel[] = [];
+  updateModel: PersonelModel = new PersonelModel();
+  personels: PersonelModel[] = [
+    {
+      id: 0,
+      bolumu : "Muhasebe",
+      iseGirisTarihi : "01.01.2022",
+      maasi : 5500,
+      personelAdi: "Taner Saydam",
+      tcNo : 53317237416
+    },
+    {
+      id: 1,
+      bolumu : "Yazılım",
+      iseGirisTarihi : "02.02.2022",
+      maasi : 5500,
+      personelAdi: "Tugay Saydam",
+      tcNo : 53417237416
+    },
+    {
+      id: 2,
+      bolumu : "Müdür",
+      iseGirisTarihi : "03.03.2022",
+      maasi : 5500,
+      personelAdi: "Seval Saydam",
+      tcNo : 53517237416
+    }
+  ];
   isUpdateFormActive: boolean = false;
   model: PersonelModel = new PersonelModel();
   isSuccess = false;
@@ -28,10 +54,9 @@ export class Form2Component implements OnInit {
  
 
   getir(index: number){
-    // this.isUpdateFormActive = true;
-    // this.updateModel = this.personels[index]
-    // this.index = index
-    // this.createUpdateForm();
+    this.isUpdateFormActive = true;
+    this.updateModel = this.personels[index]
+    this.index = index
   }
 
   delete(index: number){
@@ -51,20 +76,14 @@ export class Form2Component implements OnInit {
     //this.createKayitForm();
   }
 
-  guncelle(){
-    // if (!this.updateForm.valid) {
-    //   this._swal.callSwal("Zorunlu alanları doldurun!","Validasyon Hatası!","error")
-    //   return;
-    // }
-
-    // this.personels[this.index] = this.updateForm.value
-    // this.vazgec();
+  guncelle(event: any){    
+    this.personels[this.index] = event
+    this.vazgec();
   }
 
   vazgec(){
-    // this.isUpdateFormActive = false;
-    // this.updateForm.reset();
-  }
+     this.isUpdateFormActive = false;
+    }
 
   isSuccessChange(event: any){
     if (event) {
